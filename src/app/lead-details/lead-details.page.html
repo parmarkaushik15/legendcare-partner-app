@@ -1,0 +1,466 @@
+<ion-app>
+
+	<ion-header>
+		<ion-toolbar color="primary">
+			<ion-buttons slot="start">
+				<ion-back-button defaultHref="/dashboard"></ion-back-button>
+			</ion-buttons>
+			<ion-title size="large">{{lead_details_data?.user.name}}</ion-title>
+		</ion-toolbar>
+	</ion-header>
+
+
+
+
+	<ion-content class="ion-padding">
+
+
+
+
+
+		<div class="border_custom" *ngIf="lead_details_data?.count_OrderCompleted">
+
+
+			<div class="alert alert-success mt-2">
+
+				Order #{{lead_details_data?.order.oid}} Completed on {{lead_details_data?.OrderCompleted.created_at}}
+			</div>
+
+			<ion-button color="primary" expand="full" (click)="downloadPDFInvoice()"><ion-icon
+					name="download-outline"></ion-icon> &nbsp; Download PDF Bill &nbsp; <ion-spinner
+					class="download_pdf_loader" name="crescent" style="display:none;"></ion-spinner>
+
+			</ion-button>
+
+			<ul class="list-group" *ngIf="lead_details_data?.OrderCaseImages.length>0">
+
+				<li class="list-group-item" *ngFor="let OrderCaseImage of lead_details_data?.OrderCaseImages">
+					{{OrderCaseImage?.case_image_type}}<br>
+					<img src="{{OrderCaseImage?.image}}">
+				</li>
+
+			</ul>
+
+
+		</div>
+
+
+
+
+		<div class="bg-light">CUSTOMER DETAILS</div>
+
+		<div class="border_custom">
+			<ion-row>
+				Name
+			</ion-row>
+
+
+			<ion-row class="text-dark">
+				{{lead_details_data?.user.name_title}} {{lead_details_data?.user.name}}
+			</ion-row>
+
+		</div>
+
+
+
+		<div class="border_custom">
+			<ion-row>
+				Phone
+			</ion-row>
+
+
+			<ion-row class="text-dark">
+				<a (click)="openDialer(lead_details_data?.order?.phone)">{{lead_details_data?.order.phone}} </a>
+			</ion-row>
+
+		</div>
+
+
+
+
+
+		<div class="border_custom">
+			<ion-row>
+				Complaint No
+			</ion-row>
+
+
+			<ion-row class="text-dark">
+				{{lead_details_data?.order.oid}}
+			</ion-row>
+
+		</div>
+
+
+
+
+
+
+		<div class="border_custom">
+			<ion-row>
+				Service
+			</ion-row>
+
+
+			<ion-row class="text-dark">
+				{{lead_details_data?.category?.title}}
+			</ion-row>
+
+		</div>
+
+
+
+
+
+
+
+		<div class="border_custom" *ngIf="lead_details_data?.count_OrderCompleted">
+
+
+			<ion-row class="text-dark">
+
+				<div *ngIf="lead_details_data?.OrderCompleted.is_warrenty==1">
+					Warrenty <br> {{lead_details_data?.OrderCompleted.warrenty_msg}}
+
+				</div>
+
+
+			</ion-row>
+
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+		<div class="border_custom">
+			<ion-row>
+				Service Required Date
+			</ion-row>
+
+
+			<ion-row class="text-dark">
+				{{lead_details_data?.order.date_of_service}}
+			</ion-row>
+
+		</div>
+
+
+
+		<div class="border_custom">
+			<ion-row>
+				Address
+			</ion-row>
+
+
+			<ion-row class="text-dark">
+				{{lead_details_data?.order.flat_building}} {{lead_details_data?.order.location_field}}
+			</ion-row>
+
+			<ion-button size="default" class="blkbtn" expand="full" (click)="goToMap(lead_details_data?.order)">Go To Map</ion-button>
+
+
+		</div>
+ 
+
+		<div class="border_custom">
+			<ion-row>
+				Payment
+			</ion-row>
+
+
+			<ion-row class="text-dark">
+				You have to collect Rs. {{lead_details_data?.order.grand_total}}
+			</ion-row>
+
+		</div>
+
+
+		<div class="border_custom" *ngIf="lead_details_data?.order.order_comments">
+			<ion-row>
+				Query/Quotation
+			</ion-row>
+
+
+			<ion-row class="text-dark">
+				{{lead_details_data?.order.order_comments}}
+			</ion-row>
+
+		</div>
+
+
+		<br>
+
+		<div class="bg-light">SERVICE DETAILS</div>
+
+
+
+
+		<div class="border_custom">
+
+
+			<ion-row class="text-dark">
+				{{lead_details_data?.order_items}}
+			</ion-row>
+
+		</div>
+
+
+
+
+		<div class="border_custom" *ngIf="!lead_details_data?.count_OrderCompleted">
+
+			<ion-button size="default" routerLink='/bill-now/{{lead_details_data?.lead?.tl_id}}' expand="full">BILL
+				NOW</ion-button>
+
+		</div>
+
+
+
+
+
+		<ion-fab *ngIf="!lead_details_data?.count_OrderCompleted" vertical="center" horizontal="end" slot="fixed">
+			<ion-fab-button class="btn_customer_cancel">
+				<ion-icon name="add"></ion-icon>
+			</ion-fab-button>
+		</ion-fab>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<form id="order_status_change">
+			<input type="hidden" name="tid" value="{{tid}}">
+			<input type="hidden" name="api_token" value="{{api_token}}">
+
+			<div class="row customer_cancel_pop_up" style="display:none">
+				<div class="col-md-12">
+
+					<div class="msg_order_status pt-3 pb-3 "> </div>
+
+					<div class="row pt-3 pb-3">
+
+
+						<div class="col-1">
+							<input type="radio" class="order_sc" name="os_id" value="8" />
+						</div>
+
+						<div class="col-11">
+							Customer Re-Scheduled
+						</div>
+
+
+
+					</div>
+
+
+
+
+					<div class="order_status_reschedule_container row pt-3 pb-3" style="display:none">
+
+
+						<div class="col-12">
+							<input type="date" class="form-control order_status_reschedule date"
+								name="reschedule_date" />
+						</div>
+
+
+
+
+					</div>
+
+
+
+					<div class="row pt-3 pb-3">
+						<div class="col-1">
+							<input type="radio" class="order_sc" name="os_id" value="9" />
+						</div>
+
+						<div class="col-11">
+							Customer Cancelled
+						</div>
+
+					</div>
+
+
+
+					<div class="order_status_cancel_container_9 row pt-3 pb-3" style="display:none">
+
+
+
+
+
+
+					</div>
+
+
+
+
+
+
+					<div class="row pt-3 pb-3">
+						<div class="col-1">
+							<input type="radio" class="order_sc" name="os_id" value="12" />
+						</div>
+
+						<div class="col-11">
+							Not Delivered Service
+						</div>
+
+					</div>
+
+
+
+
+					<div class="order_status_cancel_container_12 row pt-3 pb-3" style="display:none">
+
+
+
+					</div>
+
+					<!-- <div class="row pt-3 pb-3">
+				<div class="col-1">
+					<input type="radio" class="order_sc"  name="os_id" value="13" /> 
+				</div>
+				
+				<div class="col-11">
+					Repeat Complete 
+				</div>
+			
+			</div>
+			 -->
+
+
+
+					<div class="row pt-3 pb-3">
+						<div class="col-1">
+							<input type="radio" class="order_sc" name="os_id" value="14" />
+						</div>
+
+						<div class="col-11">
+							Private Complaint
+						</div>
+
+					</div>
+
+
+					<div class="order_status_private_complaint_container row pt-3 pb-3" style="display:none">
+
+
+
+					</div>
+
+
+
+
+					<div class="row pt-3 pb-3">
+						<div class="col-1">
+							<input type="radio" class="order_sc" name="os_id" value="10" />
+						</div>
+
+						<div class="col-11">
+							Customer Unreachable
+						</div>
+
+					</div>
+
+
+
+
+				</div>
+
+
+
+
+
+
+
+				<div style="display:none" class="submit_btn_container row p-3  ">
+
+
+					<div class="col-12">
+						<input type="hidden" name="tl_id" value="{{tl_id}}" />
+						<input type="hidden" name="oid" value="{{oid}}" />
+						<ion-button type="submit" (click)="order_status_change()" name="btn_order_status_change"
+							class="btn_order_status_change" color="primary">
+							Submit <ion-spinner style="display: none;" class="loader_submit_btn"
+								name="crescent"></ion-spinner>
+
+						</ion-button>
+					</div>
+
+
+
+
+				</div>
+
+
+
+			</div>
+
+
+
+
+
+
+
+		</form>
+
+
+		<div class="reason_box" style="display:none">
+			<div class="col-12">
+				<textarea class="form-control order_status_cancel" name="cancel_reason" placeholder="Reason"></textarea>
+			</div>
+		</div>
+
+		<div class="private_complaint" style="display:none">
+			<div class="col-12">
+				<textarea class="form-control  " name="private_complaint_msg" placeholder="Message"></textarea>
+			</div>
+
+			<div class="col-12 mt-2 mb-2">
+
+				<textarea name="private_complaint_parts_name" class="form-control" placeholder="Parts Name"></textarea>
+
+
+			</div>
+
+			<div class="col-12">
+				<input type="number" name="private_complaint_added_cost" placeholder="Added Cost" class="form-control">
+
+			</div>
+		</div>
+
+
+
+
+	</ion-content>
+
+
+
+
+
+
+
+
+
+
+</ion-app>

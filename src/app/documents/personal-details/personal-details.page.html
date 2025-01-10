@@ -1,0 +1,131 @@
+<ion-app>
+    <ion-header>
+        <ion-toolbar color="primary">
+            <ion-buttons slot="start">
+                <ion-back-button defaultHref="/dashboard"></ion-back-button>
+            </ion-buttons>
+            <ion-title size="large">Personal Details</ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+         
+
+
+
+
+ <form [formGroup]="myForm" (ngSubmit)="personalDetailsFormSubmit()"  style="width:100%" enctype="multipart/form-data">
+ 
+         
+ 
+            <ion-grid>
+                <ion-row color="primary" justify-content-center>
+                    <ion-col align-self-center size="12">
+                        <div padding>
+                          <ion-item  style="padding-bottom: 10px">
+                          	<h5>Personal Information</h5>
+                          </ion-item>
+
+
+                            <ion-item>
+                                <ion-label position="stacked">Father's or Mother's Name  <ion-text color="danger">*</ion-text>
+                                </ion-label>
+                                <ion-input    type="text"     formControlName="father_mother_name" name="father_mother_name"   placeholder=""  ></ion-input>
+                            </ion-item>
+                            
+
+                             <ion-item>
+                                <ion-label position="stacked">Gender <ion-text color="danger">*</ion-text>
+                                </ion-label>
+								<ion-select  formControlName="gender" name="gender">
+									<ion-select-option value="male">Male</ion-select-option>	
+									<ion-select-option value="female">Female</ion-select-option>								
+								</ion-select>
+
+                            </ion-item>
+	
+						
+
+						      
+                            
+                           
+ 				     	  <ion-item>
+                                <ion-label position="stacked">Date of birth  <ion-text color="danger">*</ion-text>
+                                </ion-label>
+                                <ion-input    type="date"     formControlName="dob" name="dob"   placeholder=""  ></ion-input>
+                            </ion-item>
+
+ 
+							  <ion-item style="padding-bottom: 10px">
+                          	<h5>Permanent Address</h5>
+                          </ion-item>
+
+
+
+                               <ion-item>
+                                <ion-label position="stacked">House/Flat No. <ion-text color="danger">*</ion-text>
+                                </ion-label>
+                                <ion-input    type="text"     formControlName="permanent_address_house_no" name="permanent_address_house_no"   placeholder=""  ></ion-input>
+                            </ion-item>
+
+
+                              <ion-item>
+                                <ion-label position="stacked">Street/Locality/Colony <ion-text color="danger">*</ion-text>
+                                </ion-label>
+                                <ion-input    type="text"     formControlName="permanent_address_locality" name="permanent_address_locality"   placeholder=""  ></ion-input>
+                            </ion-item>
+
+
+
+                              <ion-item>
+                                <ion-label position="stacked">Pincode <ion-text color="danger">*</ion-text>
+                                </ion-label>
+                                <ion-input    type="number"     formControlName="permanent_address_pincode" name="permanent_address_pincode"   placeholder=""  ></ion-input>
+                            </ion-item>
+
+
+
+                              <ion-item>
+                                <ion-label position="stacked">City <ion-text color="danger">*</ion-text>
+                                </ion-label>
+                                <ion-input    type="text"     formControlName="city" name="city"   placeholder=""  ></ion-input>
+                            </ion-item>
+
+
+
+                              <ion-item>
+                                <ion-label position="stacked">State <ion-text color="danger">*</ion-text>
+                                </ion-label>
+                                <ion-input    type="text"     formControlName="state" name="state"   placeholder=""  ></ion-input>
+                            </ion-item>
+                          
+
+
+
+                        </div>
+                        <div  class="ion-padding"  >
+                            <ion-button size="default" type="submit"     expand="block"  >Confirm</ion-button>
+                        </div>
+
+                        
+
+ 
+
+
+
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </form>
+  
+   
+
+
+
+
+ 
+
+
+
+
+    </ion-content>
+</ion-app>

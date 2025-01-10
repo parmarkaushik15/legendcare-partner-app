@@ -1,0 +1,53 @@
+  <ion-app>
+    <ion-split-pane contentId="main-content">
+
+      <ion-menu contentId="main-content" type="overlay">
+
+        <ion-content style="--background:#de2a1b">
+
+          <ion-list id="inbox-list" style="background-color: #de2a1b !important;">
+            <ion-list-header>
+
+
+  <ion-menu-toggle auto-hide="false"  >
+  <img src="assets/images/IMG-20230124-WA0120.jpg" style="width:100%;">
+  
+  </ion-menu-toggle>
+
+
+            </ion-list-header>
+  
+            <ion-menu-toggle auto-hide="false">
+
+              <ion-item class="menu_items" *ngFor="let p of appPages; let i = index" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" style="--background: #de2a1b;color: white;">
+                <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'" style="color:white"></ion-icon>
+                <ion-label>{{ p.title }}</ion-label>
+              </ion-item>
+              <ion-item class="menu_items" (click)="deleteAccount()" lines="none" detail="false" style="--background: #de2a1b;color: white;">
+                <ion-icon slot="start" [ios]="'trash-outline'" [md]="'trash-sharp'" style="color:white"></ion-icon>
+                <ion-label>Delete your account</ion-label>
+              </ion-item>
+            
+            </ion-menu-toggle>
+
+
+            <ion-menu-toggle auto-hide="false" >
+
+              <ion-item class="menu_items"   lines="none"
+                detail="false" >
+              <a href="https://play.google.com/store/apps/details?id=com.legendshops.app" target="_blank"><img src="./assets/images/logo_legendshops.png" style="width:160px;"></a>
+              </ion-item>
+            
+            </ion-menu-toggle>
+          </ion-list>
+
+          
+
+        </ion-content>
+
+      </ion-menu>
+
+      <ion-router-outlet id="main-content"></ion-router-outlet>
+
+    </ion-split-pane>
+  </ion-app>

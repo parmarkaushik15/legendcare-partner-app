@@ -1,0 +1,29 @@
+<ion-app>
+    <ion-header>
+        <ion-toolbar color="primary">
+    
+            <ion-buttons slot="start">
+
+                <ion-back-button defaultHref="/dashboard"></ion-back-button>
+            
+            </ion-buttons>
+    
+            <ion-title size="large">{{page?.title}}</ion-title>
+        </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="ion-padding">
+  
+         
+         <div [innerHTML]="page?.body"></div>
+
+
+
+
+
+
+
+
+ 
+    </ion-content>
+</ion-app>

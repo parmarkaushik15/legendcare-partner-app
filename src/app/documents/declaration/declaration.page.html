@@ -1,0 +1,56 @@
+<ion-app>
+    <ion-header>
+        <ion-toolbar color="primary">
+            <ion-buttons slot="start">
+                <ion-back-button defaultHref="/dashboard"></ion-back-button>
+            </ion-buttons>
+            <ion-title size="large">Declaration</ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+         
+
+
+
+
+ <form [formGroup]="myForm" (ngSubmit)="declarationFormSubmit()"  style="width:100%" enctype="multipart/form-data">
+ 
+         
+                    
+                    <ion-item>
+                            
+						<div class="declaration" [innerHtml]="declaration"></div>
+                    
+                    </ion-item>
+
+     
+                            
+
+
+    
+
+                         <div  class="ion-padding"  >
+                            <ion-button size="default" type="submit"     expand="block"  >Confirm</ion-button>
+                        </div>
+
+                        
+
+ 
+
+
+
+                    
+        </form>
+  
+   
+
+
+
+
+ 
+
+
+
+
+    </ion-content>
+</ion-app>

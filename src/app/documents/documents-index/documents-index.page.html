@@ -1,0 +1,70 @@
+<ion-app>
+	<ion-header>
+		<ion-toolbar color="primary">
+			<ion-buttons slot="start">
+				<ion-back-button defaultHref="/dashboard"></ion-back-button>
+			</ion-buttons>
+			<ion-title size="large">Document Verification</ion-title>
+		</ion-toolbar>
+	</ion-header>
+	<ion-content class="ion-padding">
+
+
+		<ion-list style="width:100%">
+			<ion-item style="width:100%" lines="none">
+				<ion-button style="width:100%" expand="full" size="default" *ngIf="profile_data?.technician?.badge==0"
+					color="light" routerLink="/identity-verification">Identity Proof</ion-button>
+
+
+
+				<ion-button style="width:100%" expand="full" size="default" *ngIf="profile_data?.technician?.badge>0"
+					color="primary"><ion-icon name="checkmark-circle"></ion-icon> &nbsp; &nbsp; Identity
+					Proof</ion-button>
+
+
+			</ion-item>
+
+
+			<ion-item lines="none">
+				<ion-button style="width:100%" expand="full" color="light" *ngIf="profile_data?.technician?.badge==0"
+					routerLink="/personal-details" size="default">Personal Details</ion-button>
+
+				<ion-button style="width:100%" expand="full" color="primary" *ngIf="profile_data?.technician?.badge>0"
+					size="default"><ion-icon name="checkmark-circle"></ion-icon>&nbsp; &nbsp; Personal
+					Details</ion-button>
+
+
+			</ion-item>
+
+			<ion-item lines="none">
+				<ion-button style="width:100%" expand="full" color="light" *ngIf="profile_data?.technician?.badge==0"
+					routerLink="/current-address" size="default">Current Address</ion-button>
+
+				<ion-button style="width:100%" expand="full" color="primary" *ngIf="profile_data?.technician?.badge>0"
+					size="default"><ion-icon name="checkmark-circle"></ion-icon>&nbsp; &nbsp; Current
+					Address</ion-button>
+
+			</ion-item>
+
+			<ion-item lines="none">
+				<ion-button style="width:100%" expand="full" color="light" *ngIf="profile_data?.technician?.badge==0"
+					routerLink="/declaration" size="default">Declaration</ion-button>
+
+
+				<ion-button style="width:100%" expand="full" color="primary" *ngIf="profile_data?.technician?.badge>0"
+					size="default"><ion-icon name="checkmark-circle"></ion-icon>&nbsp; &nbsp; Declaration</ion-button>
+
+
+			</ion-item>
+		</ion-list>
+
+
+
+
+
+
+
+
+
+	</ion-content>
+</ion-app>

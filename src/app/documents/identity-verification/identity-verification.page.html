@@ -1,0 +1,148 @@
+<ion-app>
+    <ion-header>
+        <ion-toolbar color="primary">
+            <ion-buttons slot="start">
+                <ion-back-button defaultHref="/dashboard"></ion-back-button>
+            </ion-buttons>
+            <ion-title size="large">Identity Verification</ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+
+
+
+
+
+
+
+        <ion-segment scrollable value="0">
+
+            <ion-segment-button *ngFor="let type of technician_id_proofs?.types; let i = index" value="{{i}}">
+                {{type.title}}
+            </ion-segment-button>
+
+
+
+
+        </ion-segment>
+
+
+
+
+        <ion-slides style="width: 100%">
+
+            <ion-slide *ngFor="let data of technician_id_proofs?.data;  let i = index" class="slide-{{i}}"
+                style="width:100%">
+
+
+
+                <form [formGroup]="myForm" (ngSubmit)="identityFormSubmit(data.ipt_id)" style="width:100%"
+                    enctype="multipart/form-data">
+
+
+
+                    <ion-grid>
+                        <ion-row color="primary" justify-content-center>
+                            <ion-col align-self-center size="12">
+                                <div padding>
+
+                                    <ion-item>
+                                        <ion-label position="stacked">Name <ion-text *ngIf="data.ipt_id==2"
+                                                color="danger">*</ion-text>
+                                        </ion-label>
+                                        <ion-input type="text" formControlName="name_{{i}}"></ion-input>
+                                    </ion-item>
+
+
+                                    <ion-item>
+                                        <ion-label position="stacked">Number <ion-text *ngIf="data.ipt_id==2"
+                                                color="danger">*</ion-text>
+                                        </ion-label>
+                                        <ion-input type="text" formControlName="number_{{i}}"></ion-input>
+
+
+
+                                    </ion-item>
+
+
+
+                                    <ion-item>
+                                        <ion-label position="stacked">Upload front side <ion-text *ngIf="data.ipt_id==2"
+                                                color="danger">*</ion-text>
+                                        </ion-label>
+
+                                        <ion-button (click)="imageUpload('image_front',data.ipt_id)" expand="full"
+                                            size="medium">
+                                            <ion-icon name="image-outline"></ion-icon>&nbsp; Upload </ion-button>
+                                        <ion-spinner class="loader_{{data.ipt_id}}" name="crescent"
+                                            style="display: none;"></ion-spinner>
+
+                                        <span class="image_front_{{data.ipt_id}}">
+
+                                            <img *ngIf="data.image_front" src="{{data.image_front}}"
+                                                style="max-width: 100%">
+
+                                        </span>
+
+
+
+                                    </ion-item>
+
+
+                                    <ion-item>
+                                        <ion-label position="stacked">Upload back side
+                                        </ion-label>
+
+                                        <ion-button (click)="imageUpload('image_back',data.ipt_id)" expand="full"
+                                            size="medium"><ion-icon name="image-outline"></ion-icon>&nbsp; Upload
+                                        </ion-button>
+                                        <ion-spinner class="loader_{{data.ipt_id}}" name="crescent"
+                                            style="display: none;"></ion-spinner>
+
+                                        <span class="image_back_{{data.ipt_id}}">
+
+                                            <img *ngIf="data.image_back" src="{{data.image_back}}"
+                                                style="max-width: 100%">
+
+                                        </span>
+
+
+                                    </ion-item>
+
+
+
+
+                                </div>
+                                <div class="ion-padding">
+                                    <ion-button size="default" type="submit" expand="block">Submit</ion-button>
+                                </div>
+
+                                <div class="ion-padding">
+                                    <ion-button size="default" type="button" (click)="continueNextStep(data.ipt_id)"
+                                        color="dark" expand="block">Continue <ion-icon
+                                            name="arrow-forward-outline"></ion-icon></ion-button>
+                                </div>
+
+
+
+
+
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </form>
+
+
+            </ion-slide>
+
+
+
+
+
+        </ion-slides>
+
+
+
+
+    </ion-content>
+</ion-app>

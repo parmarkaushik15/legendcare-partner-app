@@ -1,0 +1,251 @@
+<ion-app>
+  <ion-header [translucent]="true">
+    <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title size="small">Ongoing Leads</ion-title>
+
+
+
+      <ion-buttons slot="end">
+
+
+
+        <ion-tab-button style="background:none;color:#fff" routerLink='/recharge-history'>
+
+          <ion-label>
+            <ion-badge *ngIf="wallet_balance?.total_balance<=0" style="color:#de2a1b;" color="light">
+              {{wallet_balance?.total_balance}}
+            </ion-badge>
+
+            <ion-badge *ngIf="wallet_balance?.total_balance>0" style="color:#fff;" color="success">
+              {{wallet_balance?.total_balance}}
+            </ion-badge>
+
+            {{wallet_balance?.credit_text}}
+
+          </ion-label>
+        </ion-tab-button>
+
+
+
+        <ion-tab-button style="background:none;color:#fff" routerLink='/message'>
+
+          <ion-badge *ngIf="total_unread_messages>0" style="font-size:13px;padding:5px;"
+            color="danger">{{total_unread_messages}}</ion-badge>
+          <ion-icon name="notifications-sharp"></ion-icon>
+
+          <ion-label>Alert</ion-label>
+        </ion-tab-button>
+
+
+
+
+
+
+      </ion-buttons>
+
+
+
+
+
+
+    </ion-toolbar>
+  </ion-header>
+
+
+
+
+  <ion-content class=" ">
+
+
+
+
+    <ion-toolbar slot="fixed">
+
+
+
+      <ion-segment class="ion_segment_dashboard" scrollable value="0">
+
+
+        <ion-segment-button class="home_secondary_heading" *ngFor="let heading of leads_heading; let i = index"
+          value="{{i}}">
+          {{heading}}
+        </ion-segment-button>
+
+
+
+
+      </ion-segment>
+
+    </ion-toolbar>
+
+
+    <div id="skeleton" *ngIf="!leads">
+      <ion-list>
+        <ion-item *ngFor="let skelton_list_item of skelton_list_items">
+          <!--  <ion-avatar slot="start">
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </ion-avatar> -->
+          <ion-label>
+            <h3>
+              <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+            </h3>
+            <p>
+              <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+            </p>
+            <p>
+            </p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+
+
+
+
+
+
+    <ion-slides class="ion_slides_dashboard pt-5">
+
+
+      <ion-slide *ngFor="let lead of leads; let i = index" class="slide-{{i}}" style="width: 100%">
+
+
+
+
+
+        <ion-list inset="true" style="width:100%" class="ion-no-padding">
+
+
+          <ion-item button *ngFor="let lead_item of lead" [routerLink]="['/', 'lead-details', lead_item.tl_id]"
+            style="width:100%" class="lead_item ion-no-padding">
+
+
+            <app-lead-item [lead]="lead_item" style="width: 100%"></app-lead-item>
+
+
+
+
+          </ion-item>
+
+          <ion-item *ngIf="lead.length" button style="width:100%">
+            <ion-button style="width:100%;text-transform:initial;" (click)="doInfinite($event)" color="light"
+              expand="full">
+              <ion-icon name="arrow-down-outline"></ion-icon> &nbsp; Load more if available
+              <ion-spinner style="display: none;" class="load_more_spinner" color="dark" name="dots"></ion-spinner>
+
+            </ion-button>
+
+          </ion-item>
+
+
+        </ion-list>
+
+
+
+
+
+
+
+      </ion-slide>
+
+
+
+
+
+
+    </ion-slides>
+
+
+
+
+
+
+
+
+
+    <ion-fab color="dark" vertical="bottom" horizontal="start" slot="fixed">
+      <ion-fab-button color="dark" class="fab_button_custom1" href='https://api.whatsapp.com/send?phone=918802343357'>
+
+        <ion-icon name="arrow-up-circle"></ion-icon> &nbsp; Help
+      </ion-fab-button>
+    </ion-fab>
+
+
+
+    <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+      <ion-fab-button style="width:40px;height:40px;" color="danger" routerLink='/leads-search'>
+        <ion-icon name="search-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+
+
+
+    <ion-infinite-scroll threshold="400px" (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+
+
+  </ion-content>
+
+
+
+
+
+
+  <ion-footer>
+    <ion-toolbar>
+
+
+
+
+
+      <ion-tabs>
+
+        <ion-tab-bar slot="bottom">
+
+          <ion-tab-button [routerLink]="['/', 'new-leads']">
+
+            <ion-badge *ngIf="total_unread_new_leads>0" style="font-size:13px;padding:5px;" color="danger">
+              {{total_unread_new_leads}}</ion-badge>
+
+            <ion-icon name="mail-outline"></ion-icon>
+            <ion-label>New</ion-label>
+          </ion-tab-button>
+
+          <ion-tab-button [routerLink]="['/', 'dashboard']">
+            <ion-icon name="document-text-outline"></ion-icon>
+            <ion-label>Ongoing</ion-label>
+          </ion-tab-button>
+
+          <ion-tab-button [routerLink]="['/', 'profile']">
+
+            <ion-icon name="person-circle-outline"></ion-icon>
+            <ion-label>Profile</ion-label>
+          </ion-tab-button>
+
+
+          <ion-tab-button (click)="toggleMenu()">
+
+
+            <ion-icon name="ellipsis-horizontal-outline"></ion-icon>
+            <ion-label>Menu</ion-label>
+          </ion-tab-button>
+
+
+
+        </ion-tab-bar>
+
+      </ion-tabs>
+
+
+    </ion-toolbar>
+  </ion-footer>
+
+
+
+</ion-app>

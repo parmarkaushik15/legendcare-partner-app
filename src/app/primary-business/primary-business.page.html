@@ -1,0 +1,109 @@
+<ion-app>
+
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dashboard"></ion-back-button>
+    </ion-buttons>
+    <ion-title size="large">Primary Business</ion-title>
+  </ion-toolbar>
+</ion-header>
+ 
+
+
+
+<ion-content   class="ion-padding">
+  
+    
+
+    
+
+<ion-row>
+
+    <ion-col size="12">
+	
+
+
+
+
+
+ <ion-searchbar   (ionInput)="search($event)" placeholder="search.." ></ion-searchbar>
+ 
+ 
+   <form id="choose_primary_business_form">
+<ion-list class="item_list item_list_{{i.cid}}" *ngFor="let i of choose_primary_business.sub_categories">
+       
+
+        <ion-item > 
+          <label>
+          <input type="checkbox" class="cid" name="cid[]" [checked]="choose_primary_business.t_cid_arr.indexOf(i.cid) !== -1" 
+            value="{{i.cid}}" />  {{i.title}}
+        </label>
+        </ion-item>
+
+
+  </ion-list>
+</form>
+
+ 
+
+ 
+
+
+
+
+
+ 
+</ion-col>
+
+
+
+
+  
+
+</ion-row>
+
+
+ 
+
+
+
+ 
+ 
+
+</ion-content>	
+
+ 
+
+
+
+<ion-footer>
+      <ion-toolbar>
+  
+  
+   
+  
+   
+  <ion-tabs>
+  
+   
+   
+      <ion-button color="primary" expand="full"  (click)="primary_business_update($event)" >
+         
+         <ion-label>Continue</ion-label>
+      </ion-button>
+     
+  
+   
+  </ion-tabs>
+   
+  
+   </ion-toolbar>
+  </ion-footer>
+   
+
+ 
+ 
+</ion-app>
+
+ 

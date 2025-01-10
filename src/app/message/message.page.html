@@ -1,0 +1,160 @@
+<ion-app>
+  <ion-header [translucent]="true">
+     <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title size="small">Message</ion-title>
+
+   
+  
+  <ion-buttons slot="secondary">
+   
+  
+    
+    <ion-tab-button  style="background:none;color:#fff" routerLink='/recharge-history'>
+  
+      <ion-label>
+        <ion-badge style="color:#fff;" color="{{wallet_balance?.color_class}}">{{wallet_balance?.total_balance}}</ion-badge>
+        Credits
+
+       </ion-label>
+    </ion-tab-button>
+
+    
+  
+    <ion-tab-button  style="background:none;color:#fff" routerLink='/message'>
+         <ion-badge *ngIf="total_unread_messages>0"   style="font-size:13px;padding:5px;" color="danger">{{total_unread_messages}}</ion-badge>
+
+      <ion-icon name="notifications-sharp"></ion-icon>
+
+      <ion-label>Alert</ion-label>
+    </ion-tab-button>
+ 
+  
+    </ion-buttons>
+   
+   
+  
+  
+   
+  
+    </ion-toolbar>
+  </ion-header>
+  
+  
+  
+  
+  <ion-content class="ion-padding"  >
+     
+<div class="chat">   
+
+  <div style="position: relative;"  *ngFor="let msg of messages" [ngClass]="msg.admin_reply == 0 ? 'message me':'message you'"   > 
+
+  {{ msg.message }}
+  <span class="message_date">{{msg.created_at}}</span>
+   </div>
+  
+  <div class="  bottom_page"></div>
+ 
+</div>
+  
+  
+  
+   
+   
+  
+  </ion-content>	
+  
+    
+  
+  
+  
+    <ion-footer>
+
+	<ion-toolbar keyboard-attach class="bar-stable item-input-inset">
+		<form   [formGroup]="sendMessageForm" (ngSubmit)="sendMessage()" >
+	
+
+		<ion-list>
+			<ion-item class="message_container">
+
+ 		        <ion-textarea formControlName="message" name="message" class="message_textarea" type="text" placeholder="Type your message"    >
+		        	
+		        </ion-textarea>
+ 
+		      <ion-button color="light" type="submit"  size="default" >
+		       <ion-icon name="send-sharp"></ion-icon>
+		      </ion-button>
+
+			</ion-item>
+
+		 
+
+
+		</ion-list>
+
+
+
+        </form>
+
+	</ion-toolbar>
+
+
+
+
+
+
+
+
+      <ion-toolbar>
+  
+  
+   
+  
+   
+  <ion-tabs>
+  
+    <ion-tab-bar slot="bottom">
+  
+      <ion-tab-button    [routerLink]="['/', 'new-leads']">
+        <ion-icon name="mail-outline"></ion-icon>
+        <ion-label>New</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button   [routerLink]="['/', 'dashboard']" >
+        <ion-icon name="document-text-outline"></ion-icon>
+        <ion-label>Ongoing</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button  [routerLink]="['/', 'profile']">
+        
+        <ion-icon name="person-circle-outline"></ion-icon>
+        <ion-label>Profile</ion-label>
+      </ion-tab-button>
+  
+  
+     <ion-tab-button  (click)="toggleMenu()" >
+        
+ 
+      <ion-icon name="ellipsis-horizontal-outline"></ion-icon>
+        <ion-label>Menu</ion-label>
+      </ion-tab-button>
+  
+   
+  
+    </ion-tab-bar>
+  
+  </ion-tabs>
+   
+  
+   </ion-toolbar>
+  </ion-footer>
+  
+   
+   
+  </ion-app>
+  
+  
+  
+  

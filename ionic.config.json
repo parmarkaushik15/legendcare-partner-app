@@ -1,0 +1,8 @@
+{
+  "name": "LC Partner",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,171 @@
+<ion-app>
+    <ion-header>
+        <ion-toolbar color="primary">
+            <ion-buttons slot="start">
+                <ion-back-button defaultHref="/dashboard"></ion-back-button>
+            </ion-buttons>
+
+            <ion-title size="large" *ngIf="profile_data?.technician.terms_accepted">Profile</ion-title>
+            <ion-title size="large" *ngIf="!profile_data?.technician.terms_accepted">Create Account</ion-title>
+
+
+        </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+        <form [formGroup]="myForm" (ngSubmit)="updateProfile()">
+
+
+
+            <ion-grid>
+                <ion-row color="primary" justify-content-center>
+                    <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+                        <div padding>
+
+                            <ion-item class="ion-no-padding">
+
+
+
+
+
+
+
+
+
+                                <ion-avatar (click)="profilePhotoUpload()" class="photo_container" slot="start"
+                                    style="width:120px;height: 120px;">
+                                    <img src="{{profile_data?.technician.photo}}" style="max-width: 100%">
+                                </ion-avatar>
+
+
+                                <div *ngIf="profile_data?.technician?.name">Hello, {{profile_data?.technician.name}}
+                                </div>
+
+                                <div *ngIf="profile_data?.technician?.badge==1">
+
+                                    <img title="Account Verified Normal Level"
+                                        src="{{profile_data?.badge_images?.badge_1}}" class="profile_document_status" />
+                                </div>
+
+                                <div *ngIf="profile_data?.technician?.badge==2">
+
+                                    <img title="Account Verified Expert Level"
+                                        src="{{profile_data?.badge_images?.badge_2}}" class="profile_document_status" />
+                                </div>
+
+
+                            </ion-item>
+
+
+
+
+
+                            <ion-item>
+
+                                <ion-label style="padding-bottom:10px;" position="stacked">Upload Photo </ion-label>
+
+
+                                <ion-button (click)="profilePhotoUpload()" expand="full"> Upload </ion-button>
+                                <ion-spinner class="photo_upload_loader" name="crescent"
+                                    style="display: none;"></ion-spinner>
+
+
+
+
+                            </ion-item>
+
+
+
+                            <ion-item>
+                                <ion-label position="stacked">Full Name <ion-text color="danger">*</ion-text>
+                                </ion-label>
+                                <ion-input readonly={{checkDisabled}} type="text" formControlName="name"></ion-input>
+                            </ion-item>
+
+
+                            <ion-item>
+                                <ion-label position="stacked">Phone <ion-text color="danger">*</ion-text>
+                                </ion-label>
+                                <ion-input readonly={{checkDisabled}} type="text" formControlName="phone"></ion-input>
+                            </ion-item>
+
+
+                            <ion-item>
+                                <ion-label position="stacked">Email Address <ion-text color="danger">*</ion-text>
+                                </ion-label>
+                                <ion-input readonly={{checkDisabled}} formControlName="email" type="email"></ion-input>
+                            </ion-item>
+
+
+
+                            <ion-item>
+                                <ion-label position="stacked">City <ion-text color="danger">*</ion-text>
+                                </ion-label>
+                                <ion-select disabled={{checkDisabled}} placeholder="City" formControlName="city_id"
+                                    value="{{profile_data?.technician.city_id}}">
+                                    <ion-select-option *ngFor="let city of profile_data?.cities"
+                                        value="{{city.city_id}}">
+                                        {{city.title}}
+                                    </ion-select-option>
+                                </ion-select>
+                            </ion-item>
+
+
+
+
+                            <ion-item>
+                                <ion-label class="pb-2" position="stacked">Primary Business
+                                </ion-label>
+
+                                <div>
+                                    <span *ngFor="let technician_category of profile_data?.technician_categories">
+                                        {{technician_category.title}} ,
+                                    </span>
+                                </div>
+
+                                <ion-button disabled={{checkDisabled}} expand="full" color="primary"
+                                    routerLink="/primary-business">
+                                    Choose Primary Business
+                                </ion-button>
+
+                            </ion-item>
+
+
+                            <ion-item *ngIf="profile_data?.technician.terms_accepted">
+                                <ion-label>Accept Order
+                                </ion-label>
+                                <ion-toggle value="1" color="tertiary" slot="start" formControlName="accept_order"
+                                    name="accept_order" checked></ion-toggle>
+
+                            </ion-item>
+
+
+
+
+                            <ion-item lines="none" *ngIf="!profile_data?.technician.terms_accepted">
+                                <ion-checkbox required color="secondary" formControlName="terms_accepted"
+                                    slot="start"></ion-checkbox>
+                                By signing up, you agree to our terms & condition and Privacy Policy.
+
+                            </ion-item>
+
+
+                        </div>
+                        <div class="ion-padding" *ngIf="!profile_data?.technician.terms_accepted">
+                            <ion-button size="default" type="submit" expand="block">Create a new account</ion-button>
+                        </div>
+
+                        <div class="ion-padding" *ngIf="profile_data?.technician.terms_accepted">
+                            <ion-button size="default" type="submit" expand="block">Update Profile</ion-button>
+                        </div>
+
+
+
+
+
+
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </form>
+    </ion-content>
+</ion-app>

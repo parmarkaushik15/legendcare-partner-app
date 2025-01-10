@@ -1,0 +1,67 @@
+<ion-content class="ion-padding" [fullscreen]="true" style="--background: #fff;">
+	
+	<div *ngIf="otp_partner_container == false" class="phone_partner_container">
+		<div class="col-12 pb-4" style="margin-top: 50px;display: flex;">
+			<img src="assets/images/home.png" style="width: 320px;margin: auto;" />
+		</div>
+		
+		<div class="">
+			<div class="input-group mb-2">
+				<div class="input-group-prepend">
+					<div class="input-group-text" style="width: 120px; padding-left: 40px;border-top-left-radius: 34px;
+    border-bottom-left-radius: 30px;"><img class="flag_sm" width="30" src="../assets/images/flag_india.png">
+						&nbsp;&nbsp;+91 </div>
+				</div>
+				<input type="number" [(ngModel)]="phone" class="phone_partner form-control partner_txt_fld1 border p-4" name="phone_partner"
+					placeholder="Mobile Number" style="border-top-right-radius: 34px;
+    border-bottom-right-radius: 30px;">
+			</div>
+
+			<button size="default" class="btn-submit" expand="full" color="dark" (click)="otp_sent_for_login_partner()">
+				Continue
+			</button>
+		</div>
+	</div>
+	<div *ngIf="otp_partner_container == true" style="color: white;" class="otp_partner_container">
+		<div (click)="otp_sent_for_login_partner_back()" class="col-12 pb-4" style="margin-top: 20px;padding-left: 0px !important;">
+			<img src="assets/images/back_arrow.png" style="width: 30px;margin: auto;" />
+		</div>
+		<h3 class="pt-3 pb-2 label">OTP Verification</h3>
+		<div class="label-wrap">Enter the verification code we just sent to your number +91 {{maskPhone(phone)}}.
+			 
+		</div>
+		<div class="otp-container">
+			<input
+			  *ngFor="let input of otpArray; let i = index"
+			  type="text"
+			  maxlength="1"
+			  [id]="'otp' + i"
+			  [(ngModel)]="otp[i]"
+			  (keyup)="onKeyUp($event, i)"
+			  (keydown)="onKeyDown($event)"
+			  (input)="onInput($event, i)"
+			  class="otp-input"
+			  autofocus
+			/>
+		  </div>
+ 
+		  <p  class="not-received" *ngIf="countdown > 0">
+			Resend OTP in {{ countdown }} seconds
+		  </p>
+		  <p  *ngIf="countdown == 0" class="not-received">Didn’t receive code? 
+			<span class="resend" (click)="resendOtp()"> Resend</span>
+		  </p>
+
+		<div class="  justify-content-center align-items-center">
+			<button size="default"  class="btn-submit btn_login_otp_for_phone_partner"
+				expand="full" color="dark"  
+				(click)="btn_login_with_phone_partner()">
+				Verify
+			</button>
+
+
+		</div>
+
+
+	</div> 
+</ion-content>

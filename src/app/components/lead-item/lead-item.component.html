@@ -1,0 +1,26 @@
+<ion-row class="small_font" style="padding:10px 0px;width: 100%">
+
+              
+ 
+  <ion-col size="7" style="text-align: left;"> 
+         <div class=" " size="large" style="padding:5px 0px "  > 
+       
+          <span class="text-dark">{{lead?.order?.name_title}} {{lead?.order?.name}} |  {{lead?.order?.phone}} </span><br>
+          {{lead?.order?.flat_building}} <br>
+
+        </div>
+
+
+      <span class="badge" *ngIf="lead?.order_status_change" style="background:{{lead?.order_status_change?.bg_color_code}}" >{{lead?.order_status_change?.name}}</span>
+
+
+ </ion-col>
+
+
+ <ion-col size="5" style="text-align: right;">
+ <span style="font-size:11px" [innerHTML]="lead?.order?.date_of_service" >  </span> <br>
+  Rs. {{lead?.order?.grand_total}}
+
+ </ion-col>
+
+</ion-row>

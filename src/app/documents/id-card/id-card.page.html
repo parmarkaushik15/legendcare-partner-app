@@ -1,0 +1,32 @@
+<ion-app>
+    <ion-header>
+        <ion-toolbar color="primary">
+            <ion-buttons slot="start">
+                <ion-back-button defaultHref="/"></ion-back-button>
+            </ion-buttons>
+            <ion-title size="large">ID Card</ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-no-padding">
+  
+         
+ 
+             
+
+ <iframe [src]="sanitizer.bypassSecurityTrustResourceUrl(id_card_url)"    width="100%" height="100%" frameborder="0" name="SELFHTML_in_a_box">
+ Sorry, but your browser can't display iframes   
+</iframe>
+
+
+
+
+
+
+
+
+
+
+
+ 
+    </ion-content>
+</ion-app>

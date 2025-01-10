@@ -1,0 +1,25 @@
+.customer_cancel_pop_up {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    z-index: 999;
+    background: #fff;
+    -webkit-box-shadow: -1px -6px 15px -5px rgba(105, 104, 105, 1);
+    -moz-box-shadow: -1px -6px 15px -5px rgba(105, 104, 105, 1);
+    box-shadow: -1px -6px 15px -5px rgba(105, 104, 105, 1);
+}
+
+
+.btn_customer_cancel {
+
+    z-index: 999999 !important;
+}
+
+.date {
+    background: transparent;
+    color: black !important;
+}
+
+ion-button.blkbtn {
+    --background: #000;
+}

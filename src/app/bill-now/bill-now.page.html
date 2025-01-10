@@ -1,0 +1,217 @@
+<ion-app>
+
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dashboard"></ion-back-button>
+    </ion-buttons>
+    <ion-title size="large">{{lead_details_data?.user.name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+ 
+
+
+
+<ion-content   class="ion-no-padding"> 
+
+
+<div class="container">
+ 		
+		<div class="row justify-content-center">
+		<div class="col-md-6">
+				 
+
+ 				 	<div class="alert alert-success mt-2" *ngIf="lead_details_data?.OrderCompleted">Already Completed !</div>
+				
+ 						
+				 
+				 <div class="bill_customer_form_other_hide_section  mb-2 bg-light">CASE PICTURES</div>
+				 
+
+				 <form id="bill_customer_form"  >
+				 	<input type="hidden" name="tid" value="{{tid}}">
+				 	<input type="hidden" name="api_token" value="{{api_token}}">
+
+ 				 
+				 <div class="col-12  pb-3">
+					  
+					 <div class="value">
+					  
+					  <label><input type="radio"  class="case_image_type" name="case_image_type" value="case_image"  checked="checked"/> Case Picture </label><br />
+					  <label><input type="radio" class="case_image_type" name="case_image_type" value="hard_copy_invoice" /> Hard copy invoice</label><br />
+					  
+					    <ion-button (click)="upload_order_case_picture()"  > Upload </ion-button>
+						<input type="file" id="fileInput" style="display:none" (change)="handleFileInput($event)" />
+						<div  class="photo_container"></div>
+ 					  <br />
+					  <ion-spinner class="photo_upload_loader" name="crescent" style="display: none;"></ion-spinner>
+
+					 
+					 </div>	
+				 </div>
+				 
+				 
+				 
+				 
+				 <div class=" mb-2 bg-light">CASE COMMENTS</div>
+				  <div class="col-12  pl-0 pr-0 pb-3">
+					 
+					 <input type="text" name="comment" class="form-control" placeholder="Comment.." /> 
+					 
+				 </div>
+				 
+				 
+				 
+				  <div class="  mb-2 bg-light">BILLING</div>
+				  <div class="col-12 pl-0 pr-0 pb-3">
+					 
+					 
+	<table width="100%" border="0" class="table">
+
+    
+ 		
+  			 <tr *ngFor="let order_item of lead_details_data?.order_items">
+			<td width='67%'> {{order_item?.title}} </td><td width='31%' style='text-align:right'> Rs. {{order_item?.cost}}</td>
+ 		 	
+		   </tr>
+		 
+	 
+	 <tr>
+	 	<td><b>Total</b></td>
+		<td style="text-align:right"><b>Rs. <span class="total_display">{{lead_details_data?.order?.grand_total}}</span></b></td>
+	 </tr>
+	 
+	  
+
+
+</table>
+					 
+				 </div>
+				 
+				
+				
+				  
+ 				  <div class="col-12 pl-0 pr-0 pb-3">
+ 					<label><a href="#" class="add_more_billing_item btn-sm btn btn-outline-primary"> <i class="fas fa-plus"></i> Add more billing items </a></label>
+					 
+					 
+					 
+					 <div class="row more_billing_item_container">
+ 						 
+ 					</div>
+
+
+				 </div>
+				  
+				 
+				  
+ 				  <div class="col-12   pl-0 pr-0 pb-3">
+ 					<label><input type="checkbox" name="is_warrenty" class="is_warrenty" value="1" /> Is Warrenty ?</label>
+					
+ 					 <input style="display:none" type="text" name="warrenty_msg" class="warrenty_msg form-control" placeholder="Warrenty details"  /> 
+					 
+				 </div>
+				 
+				 
+				 
+				 <div class="col-12  pl-0 pr-0 pb-3">
+ 					
+					  <div class="title"> Select Payment mode </div>
+					 <div class="value">
+					  <label><input type="radio" name="payment_method" value="online" /> Online </label><br />
+					   <label><input type="radio" name="payment_method" value="cash" checked="checked" /> Cash </label><br />
+					  
+					 </div>	
+					 
+				 </div>
+	 
+ 				
+				 
+				
+				 
+				 
+				 
+				  
+				 <div class="col-12   pl-0 pr-0 pb-3">
+				 	<input type="hidden" name="tl_id" value="{{lead_details_data?.lead?.tl_id}}" />
+					<input type="hidden" name="oid" value="{{lead_details_data?.order?.oid}}" />
+					<input type="hidden" name="grand_total" value="{{lead_details_data?.order?.grand_total}}" />
+					
+					<input type="hidden" name="net_grand_total" value="{{lead_details_data?.order?.grand_total}}" />
+					
+				 
+
+				 </div>	
+				 
+				 </form>
+
+
+ 				 	 
+					
+					 <ion-button *ngIf="!lead_details_data?.OrderCompleted" (click)="order_complete()" class="bill_customer_form_other_hide_section" id="order_complete" color="primary" expand="full" size="default" name="submit">BILL CUSTOMER <ion-spinner style="display: none;" class="loader_submit_btn" name="crescent"></ion-spinner> </ion-button>
+
+ 				 
+		      <div class="alert msg_order text-center "></div>
+
+ 				
+				
+				
+				<div class="data_billing_item" style="display:none">
+					 
+							<div class="col-8  pr-0 "><input type="text" class="form-control" name="order_items[]" placeholder="Item name"  /></div>
+							<div class="col-4 pl-0  " style="text-align:right"><div class="input-group mb-2">
+							<div class="input-group-prepend">
+							  <div class="input-group-text">Rs.</div>
+							</div>
+							<input type="number" class="order_items_amount form-control"  name="order_items_amount[]" placeholder="Amount" style="width:70px;">
+						  </div>
+						  
+						  </div> 
+						   
+	  
+	  
+						 
+					 </div> 
+				 
+				  	
+				 
+				 
+				
+				
+				
+				
+ 
+	
+	</div>
+	
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	 
+	
+	
+</div>
+
+
+
+</ion-content>	
+
+ 
+
+
+
+
+   
+
+ 
+ 
+</ion-app>
+
+ 

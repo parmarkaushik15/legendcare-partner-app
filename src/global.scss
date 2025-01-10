@@ -1,0 +1,299 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+
+.border {
+    border: 1px solid #e9e7e7;
+    padding: 4px;
+}
+
+.fab_button_custom1 {
+    width: 87px !important;
+    height: 43px !important;
+}
+
+ion-fab {
+    ion-fab-button {
+        --border-radius: 29px !important;
+    }
+}
+
+
+.small_font {
+    font-size: 14px;
+}
+
+.badge {
+
+    padding: 3px 8px;
+    color: #fff;
+    border-radius: 10px;
+    margin: 0px;
+    font-size: 11px;
+
+}
+
+.text-dark {
+    color: #000;
+    font-weight: 500;
+}
+
+.border_custom {
+    padding: 10px 0px;
+    border-bottom: 1px solid #dfdcdc;
+}
+
+.bg-light {
+    background-color: #edeff2 !important;
+    padding: 10px 10px;
+}
+
+
+.table-heading {
+    background: #333;
+    color: #fff;
+    padding: 5px;
+}
+
+.table .row {
+    padding: 6px 4px;
+}
+
+.table .row:nth-of-type(odd) {
+    background: #f4f4f4;
+    padding: 6px 4px;
+}
+
+.bg_red .alert-wrapper {
+    background: #feecec;
+    color: #000;
+    font-weight: bold;
+}
+
+.cat_list_first_img {
+    height: 100% !important;
+    width: 120px !important;
+}
+
+
+.more_billing_item_container .input-group-text {
+    padding: 4px !important;
+    font-size: 12px !important;
+    background: #fff !important;
+}
+
+
+/***Message Page **/
+
+
+.chat {
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+.message {
+    border-radius: 5px;
+    margin: 0.4em 0;
+    padding: 0.6em;
+    max-width: 90%;
+    font-size: 13px;
+}
+
+.me {
+    align-self: flex-start;
+    background-color: #3880ff;
+    color: white;
+}
+
+.you {
+    align-self: flex-end;
+    background-color: #d6dbd6;
+    color: #000;
+}
+
+.message_container .item-native {
+    background: #e1e3e8 !important;
+}
+
+.message_date {
+    /* position: absolute; */
+    top: 25px;
+    left: 12px;
+    padding: 4px;
+    border-radius: 10px;
+}
+
+.me .message_date {
+    color: #eaf2ff;
+}
+
+.you .message_date {
+    color: #454648;
+}
+
+
+
+/***End Message Page **/
+
+
+
+/***Contact us page ***/
+
+.fa_icon1 {
+    font-size: 40px;
+}
+
+.fa_icon3 {
+    font-size: 40px;
+}
+
+.circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    text-align: center;
+    line-height: 100px;
+
+}
+
+.bg1 {
+    background: #f69696;
+    color: #FFFFFF;
+}
+
+
+.bg2 {
+    background: #398da3;
+    color: #FFFFFF;
+}
+
+
+.bg3 {
+    background: #34a569;
+    color: #FFFFFF;
+}
+
+
+
+.bg4 {
+    background: #3494de;
+    color: #FFFFFF;
+}
+
+
+.addressdiv {
+    vertical-align: top;
+    padding: 19px 8px;
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+    margin-right: 28px;
+    margin-bottom: 28px;
+    background-color: #fff;
+    border-radius: 4px;
+    border: 1px solid #e2e2e2;
+}
+
+.Headercontact {
+    color: #fff;
+    margin: 0 auto;
+    padding: 0;
+    max-width: 100%;
+    border: 0;
+    background: #fff;
+    box-shadow: inset 0 -1px 0 0 hsla(0, 0%, 80%, .96);
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 60px;
+    transition: transform .2s ease-in;
+    position: fixed;
+    font-family: Axiforma-Regular, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    z-index: 7;
+}
+
+.maincontactheader {
+    margin: 0;
+    padding: 0;
+    font-weight: 600;
+    color: #424242;
+    font-size: 28px;
+    line-height: 36px;
+}
+
+
+
+
+/** End contact us page ***/
+
+
+.profile_document_status {
+    width: 31px;
+    margin-left: 6px;
+}
+
+.menu_items {
+    --ripple-color: #eae7e7;
+}
+
+.lead_item {
+    --ripple-color: #eae7e7;
+}
+
+input[type="radio"]:checked {
+    width: 15px;
+    height: 15px;
+    -webkit-appearance: none;
+
+    background-color: #000;
+    border-radius: 15px;
+
+    border: 2px solid gray;
+}
+
+.btn-outline-primary {
+
+    background-color: #de2a1b;
+}
+ion-title.ios {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 8px 50px 6px 70px;
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    font-size: 22px;
+    font-weight: 500;
+}
+ion-tab-bar.ios {
+    padding-bottom: 0px !important;
+}
+ion-list-header.ios {
+    margin-top: 46px !important;
+}

@@ -1,0 +1,166 @@
+<ion-app>
+
+<ion-header [translucent]="true" >
+        <ion-toolbar color="primary" class="top_bar_container">
+            <ion-buttons slot="start">
+
+                <ion-back-button defaultHref="/dashboard"></ion-back-button>
+            
+            </ion-buttons>
+              <ion-title>Search Complaint</ion-title>
+
+
+            <ion-buttons slot="secondary">
+                
+               
+            </ion-buttons>
+        </ion-toolbar>
+    </ion-header>
+ 
+
+
+
+<ion-content   class="ion-padding">
+  
+   
+   <ion-spinner class="loader" style="display: none" name="dots"></ion-spinner>
+
+  
+    
+
+
+
+<form   [formGroup]="filteOrderForm" (ngSubmit)="filteOrder()" >
+
+    	 
+	<ion-row>
+		<ion-col size="12">
+         
+         <ion-item   color="light">
+          <ion-label>Complaint No.</ion-label>
+          <ion-input type="number" formControlName="oid" name="oid" >
+          </ion-input>
+        </ion-item>
+	
+		</ion-col>
+
+		 <ion-col size="12">
+         
+         <ion-item   color="light">
+          <ion-label>Phone No.</ion-label>
+          <ion-input type="number" formControlName="phone" name="phone" >
+          </ion-input>
+        </ion-item>
+	
+		</ion-col>
+
+
+		
+		<ion-col size="12">
+         
+          <ion-button type="submit" expand="full" size="medium" color="primary" > Search </ion-button>
+ 	
+		</ion-col>
+
+		 
+
+
+		 
+
+
+
+	</ion-row>
+
+
+       
+ 
+
+
+
+ </form>
+
+
+
+
+
+
+
+    
+
+
+    
+
+
+
+         
+               
+<div id="skeleton" *ngIf="!leads_loaded">
+            <ion-list>
+                <ion-item *ngFor="let skelton_list_item of skelton_list_items">
+                    <!--  <ion-avatar slot="start">
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </ion-avatar> -->
+                    <ion-label>
+                        <h3>
+                            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                        </h3>
+                        <p>
+                            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                        </p>
+                        <p>
+                        </p>
+                    </ion-label>
+                </ion-item>
+            </ion-list>
+        </div>
+
+
+
+
+ 			 
+  		<ion-list inset="true" style="width:100%" class="ion-no-padding">
+  
+
+  <ion-item   *ngFor="let lead_item of leads"   [routerLink]="['/', 'lead-details', lead_item.tl_id]" style="width:100%" 
+  class="lead_item ion-no-padding">
+  
+  
+          <app-lead-item [lead]="lead_item" style="width: 100%"></app-lead-item>
+
+
+
+  
+  </ion-item>
+</ion-list>
+
+
+ 	   
+
+<div [innerHTML]="response_message"></div>
+
+ 
+
+
+
+ 
+
+
+ 
+
+
+
+ 
+ 
+
+</ion-content>	
+
+ 
+
+
+
+
+   
+
+ 
+ 
+</ion-app>

@@ -1,0 +1,106 @@
+<ion-app>
+    <ion-header>
+        <ion-toolbar color="primary">
+            <ion-buttons slot="start">
+                <ion-back-button defaultHref="/dashboard"></ion-back-button>
+            </ion-buttons>
+            <ion-title size="large">Recharge History</ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-no-padding">
+  
+         
+ 
+            <ion-grid style="font-size:12px;">
+
+
+            <ion-row>
+	          
+	          <ion-col class="text-center">
+
+	  			<h3>Total Balance  <br> <span [ngClass]="items?.total_balance<0 ? 'text text-danger' : ''" > Rs. {{items?.total_balance}} </span> </h3> 
+	            	
+
+	            <ion-button color="primary" routerLink="/wallet">Recharge Now</ion-button>	
+             </ion-col>
+
+             </ion-row>    
+
+
+
+		<ion-row *ngIf="items?.total_item>0">
+			<ion-col class="table">
+
+ 			 
+
+  <ion-row class="table-heading">
+    <ion-col size="1" >S/No.</ion-col>
+    <ion-col size="3">Recharge Amount</ion-col>
+    <ion-col size="3">Balance</ion-col>
+    <ion-col size="4">Date</ion-col>
+  </ion-row>
+  
+ 
+ 
+  		 	
+			 <ion-row [ngClass]="{'  text-danger': credit.recharge_amount<0, 
+				                 '  text-success': credit.recharge_amount>0 
+				                 	}" 
+				                 	*ngFor="let credit of items_recharge;let i=index" >
+				<ion-col size="1" style="text-align: center;">{{i+1}}</ion-col>
+				
+				<ion-col size="3">
+				Rs. {{credit.recharge_amount}}
+				
+				 <div *ngIf="credit?.oid">
+				<br />
+				
+				<span class="font-size-12  " routerLink="/lead-details/{{credit.tl_id}}">  
+					<b>Order # {{credit.oid}} </b>
+				 </span>
+				</div>
+				
+				</ion-col>
+				<ion-col size="3">Rs. {{credit.total_balance}}</ion-col>
+				<ion-col size="4">{{credit.created_at}}  </ion-col>
+			  </ion-row>
+ 
+
+
+
+ 
+				
+			</ion-col>
+		</ion-row>
+ 	
+		<ion-row *ngIf="items?.total_item==0">
+			<ion-col class="table">
+				<ion-text>
+					<h4>
+					{{items?.message}}
+				</h4>
+			</ion-text>
+			 </ion-col>
+
+		</ion-row>		
+
+
+            </ion-grid>
+
+
+
+
+
+
+
+ <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+
+
+
+ 
+    </ion-content>
+</ion-app>

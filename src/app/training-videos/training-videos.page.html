@@ -1,0 +1,128 @@
+<ion-app>
+    <ion-header>
+        <ion-toolbar color="primary">
+            <ion-buttons slot="start">
+                <ion-back-button defaultHref="/dashboard"></ion-back-button>
+            </ion-buttons>
+            <ion-title size="large">Training Videos</ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-no-padding">
+         
+        <ion-toolbar>
+            <ion-segment class="ion-segment-radio" scrollable value="0">
+
+
+
+                <ion-segment-button class="home_secondary_heading"  *ngFor="let heading of training_videos?.headings; let i = index" value="{{i}}" >
+                    {{heading}}
+                </ion-segment-button>
+                
+            
+           
+
+
+
+            </ion-segment>
+        </ion-toolbar>
+
+        <ion-slides class="ion-slides-radio">
+
+            <ion-slide   *ngFor="let videos of training_videos?.videos; let i = index" class="slide-{{i}}" >
+
+              
+				
+				<ion-list style="width:100%">
+					
+					<ion-item  lines="none"  *ngFor="let video of videos" style="width:100%"    [routerLink]="['/', 'training-video-details', video.tv_id]" >
+						
+						
+ 									
+						<ion-card button class="ion-no-padding" style="width:100%"  >
+
+<ion-row style="width:100%">
+
+ 
+  <ion-col>
+
+ <ion-item lines="none" style="padding-top: 3px;">
+
+
+<ion-row>   
+ 
+ <ion-col size="12">
+ <h5> {{video.title}} </h5> 
+ </ion-col>
+
+
+ <ion-col size="12">
+  <div style="font-size:12px;margin-top: 8px;">  App Training : {{video.duration}} mins </div>
+ </ion-col>
+
+
+ </ion-row>
+
+
+   </ion-item>
+
+
+ 
+  
+  </ion-col>
+
+
+
+    <ion-col  size="4" *ngIf="video.cover_photo" class="cat_list_first ion-no-padding">
+         <img class="cat_list_first_img" [src]="video.cover_photo" *ngIf="video.cover_photo != 'N/A'">
+  
+
+  </ion-col>
+
+
+
+</ion-row>
+
+
+
+  
+ 
+</ion-card>
+
+			
+
+ 
+
+
+					</ion-item>
+
+				</ion-list>
+
+
+
+
+            </ion-slide>
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+        
+
+        </ion-slides>
+
+         
+    
+    </ion-content>
+</ion-app>
