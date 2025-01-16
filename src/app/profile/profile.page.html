@@ -34,6 +34,7 @@
                                 <ion-avatar (click)="profilePhotoUpload()" class="photo_container" slot="start"
                                     style="width:120px;height: 120px;">
                                     <img src="{{profile_data?.technician.photo}}" style="max-width: 100%">
+                                    <input type="file" id="fileInput" style="display:none" (change)="handleFileInput($event)" />
                                 </ion-avatar>
 
 

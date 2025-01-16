@@ -54,6 +54,7 @@ export class ProfilePage implements OnInit {
   cropOptions: CropOptions = {
     quality: 60
   }
+  selectedFile: globalThis.File;
 
 
   constructor(
@@ -227,81 +228,106 @@ export class ProfilePage implements OnInit {
 
 
 
+  async handleFileInput(event: Event) {
+
+    const input = event.target as HTMLInputElement;
+    if (input && input.files) {
+      this.selectedFile = input.files[0];
+      console.log('File selected:', this.selectedFile);
+      let other_data = "tid=" + this.tid;
+      console.log(other_data);
+      const url = this.dataService.api_url + 'upload_technician_profile_photo?tid=' + this.tid + "&api_token=" + this.api_token + "&" + other_data
+      this.dataService.upload_data(url, this.selectedFile).subscribe((res: any) => {
+        console.log(res);
+        (<HTMLElement>document.querySelector('.photo_upload_loader')).style.display = "none";
+        if (res.status == 1) {
+          var uploaded_path = res.uploaded;
+          (<HTMLElement>document.querySelector('.photo_container')).innerHTML = "<img src='" + uploaded_path + "'>";
+        }
+      }, (err) => {
+        (<HTMLElement>document.querySelector('.photo_upload_loader')).style.display = "none";
+        alert(err.message);
+
+      })
+    }
+  }
 
 
 
   profilePhotoUpload() {
-    
-      this.fileChooser.open().then((uri) => {
+    const fileInput = document.getElementById('fileInput') as HTMLInputElement;
+    (<HTMLElement>document.querySelector('.photo_upload_loader')).style.display = "block";
+    fileInput.click(); 
+      // this.fileChooser.open().then((uri) => {
 
-        (<HTMLElement>document.querySelector('.photo_upload_loader')).style.display = "block";
-
-
-        this.crop.crop(uri, this.cropOptions)
-          .then(
-            newPath => {
-
-              //this.showCroppedImage(newPath.split('?')[0]);
+      //   (<HTMLElement>document.querySelector('.photo_upload_loader')).style.display = "block";
 
 
+      //   this.crop.crop(uri, this.cropOptions)
+      //     .then(
+      //       newPath => {
 
-
-              this.filePath.resolveNativePath(newPath).then((nativePath) => {
-
-                // alert(nativePath);
-
-                this.fileTransfer = this.transfer.create();
-
-                let options: FileUploadOptions = {
-                  fileKey: 'file',
-                  fileName: 'profile_photo.png',
-                  chunkedMode: false,
-                  //mimeType: "image/jpeg",
-                }
-
-
-                this.fileTransfer.upload(nativePath, this.dataService.api_url + 'upload_technician_profile_photo?tid=' + this.tid + "&api_token=" + this.api_token, options)
-                  .then((data) => {
-
-
-                    //alert("Uploaded Successfully"+JSON.stringify(data));
-
-                    let res = JSON.parse(data.response);
-                    if (res.status == 1) {
-                      var uploaded_path = res.uploaded;
-
-                      document.querySelector('.photo_container').innerHTML = "<img src='" + uploaded_path + "'>";
-
-                    }
-
-
-                  }, (err) => {
-
-                    alert(JSON.stringify(err));
-
-                  });
+      //         //this.showCroppedImage(newPath.split('?')[0]);
 
 
 
-              }).catch((err) => {
-                alert(JSON.stringify(err));
-              });
+
+      //         this.filePath.resolveNativePath(newPath).then((nativePath) => {
+
+      //           // alert(nativePath);
+
+      //           this.fileTransfer = this.transfer.create();
+
+      //           let options: FileUploadOptions = {
+      //             fileKey: 'file',
+      //             fileName: 'profile_photo.png',
+      //             chunkedMode: false,
+      //             //mimeType: "image/jpeg",
+      //           }
 
 
-              (<HTMLElement>document.querySelector('.photo_upload_loader')).style.display = "none";
+      //           this.fileTransfer.upload(nativePath, this.dataService.api_url + 'upload_technician_profile_photo?tid=' + this.tid + "&api_token=" + this.api_token, options)
+      //             .then((data) => {
 
 
-            },
-            error => {
-              alert('Error cropping image' + error);
-            }
-          );
+      //               //alert("Uploaded Successfully"+JSON.stringify(data));
+
+      //               let res = JSON.parse(data.response);
+      //               if (res.status == 1) {
+      //                 var uploaded_path = res.uploaded;
+
+      //                 document.querySelector('.photo_container').innerHTML = "<img src='" + uploaded_path + "'>";
+
+      //               }
 
 
-      })
-        .catch((err) => {
-          alert(JSON.stringify(err));
-        });
+      //             }, (err) => {
+
+      //               alert(JSON.stringify(err));
+
+      //             });
+
+
+
+      //         }).catch((err) => {
+      //           alert(JSON.stringify(err));
+      //         });
+
+
+      //         (<HTMLElement>document.querySelector('.photo_upload_loader')).style.display = "none";
+
+
+      //       },
+      //       error => {
+      //         alert('Error cropping image' + error);
+      //       }
+      //     );
+
+
+      // })
+      //   .catch((err) => {
+      //     alert(JSON.stringify(err));
+      //   });
  
 
 

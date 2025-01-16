@@ -133,74 +133,7 @@ export class BillNowPage implements OnInit {
   upload_order_case_picture() {
     const fileInput = document.getElementById('fileInput') as HTMLInputElement;
     (<HTMLElement>document.querySelector('.photo_upload_loader')).style.display = "block";
-    fileInput.click();
-    // var case_image_type = $('.case_image_type:checked').val();
-    // //alert(case_image_type);
-
-
-
-
-    // this.fileChooser.open().then((uri) => {
-    //   (<HTMLElement>document.querySelector('.photo_upload_loader')).style.display = "block";
-
-
-    //   this.filePath.resolveNativePath(uri).then((nativePath) => {
-
-    //     // alert(nativePath);
-
-    //     this.fileTransfer = this.transfer.create();
-
-    //     let options: FileUploadOptions = {
-    //       fileKey: 'file',
-    //       fileName: 'order_case.png',
-    //       chunkedMode: false,
-    //       //mimeType: "image/jpeg",
-    //     }
-
-
-    //     var other_data = "oid=" + this.oid + "&tl_id=" + this.tl_id + "&case_image_type=" + case_image_type;
-
-    //     this.fileTransfer.upload(nativePath, this.dataService.api_url + 'upload_order_case_picture?tid=' + this.tid + "&api_token=" + this.api_token + "&" + other_data, options)
-    //       .then((data) => {
-
-    //         (<HTMLElement>document.querySelector('.photo_upload_loader')).style.display = "none";
-
-    //         //alert("Uploaded Successfully"+JSON.stringify(data));
-
-    //         let res = JSON.parse(data.response);
-    //         if (res.status == 1) {
-    //           var uploaded_path = res.uploaded;
-
-    //           (<HTMLElement>document.querySelector('.photo_container')).innerHTML = "<img src='" + uploaded_path + "'>";
-
-    //         }
-
-
-    //       }, (err) => {
-
-    //         alert(JSON.stringify(err));
-
-    //       });
-
-
-
-    //   }).catch((err) => {
-    //     alert(JSON.stringify(err));
-    //   });
-
-
-    // })
-    //   .catch((err) => {
-    //     alert(JSON.stringify(err));
-    //   });
-
-
-
-
-
-
-
-
+    fileInput.click(); 
   }
 
 

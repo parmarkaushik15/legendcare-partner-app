@@ -25,7 +25,7 @@
     "@capacitor/core": "^4.6.2",
     "@capacitor/filesystem": "^5.2.2",
     "@capacitor/geolocation": "^6.1.0",
-    "@capacitor/ios": "4.7.3",
+    "@capacitor/ios": "^6.2.0",
     "@capacitor/push-notifications": "^4.1.2",
     "@ionic-native/core": "^5.0.7",
     "@ionic-native/crop": "^5.36.0",
