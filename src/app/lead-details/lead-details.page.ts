@@ -2,7 +2,7 @@ import { DataService } from '../service/data.service';
 
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, Platform } from '@ionic/angular';
 
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
@@ -13,9 +13,8 @@ import { HTTP } from '@ionic-native/http/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { Browser } from '@capacitor/browser';
 import * as $ from "jquery";
-
-
-
+import { CallNumber } from 'capacitor-call-number';
+ 
 
 @Component({
   selector: 'app-lead-details',
@@ -42,6 +41,7 @@ export class LeadDetailsPage implements OnInit {
     private transfer: FileTransfer,
     private file: File,
     private filePath: FilePath,
+    private platform: Platform,
     private fileOpener: FileOpener,
 
   ) {
@@ -76,8 +76,13 @@ export class LeadDetailsPage implements OnInit {
   }
 
   async openDialer(phoneNumber) {
-    console.log("phoneNumber=",phoneNumber);
-    window.open(`tel:${phoneNumber}`, '_system');
+    const telUrl = `tel:${phoneNumber}`;
+
+    if (this.platform.is('ios')) {
+      await CallNumber.call({ number: phoneNumber, bypassAppChooser: false })
+    }else{
+      window.open(telUrl, '_system');
+    }
   }
 
 
