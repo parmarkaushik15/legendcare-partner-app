@@ -9,13 +9,13 @@ android {
         keyPassword '1android'
       }
     }
-    compileSdkVersion 34
+    compileSdkVersion 33
     defaultConfig {
         applicationId "com.repairservicesindia.partner"
         minSdkVersion 27
-        targetSdkVersion 34
-        versionCode 307000
-        versionName "3.4.0"
+        targetSdkVersion 33
+        versionCode 308000
+        versionName "3.5.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         aaptOptions {
              // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.

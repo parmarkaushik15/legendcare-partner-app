@@ -4,16 +4,14 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LoadingController, Platform } from '@ionic/angular';
 
-import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
+import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
-//import { File } from '@ionic-native/file/ngx';
 import { FileOpener } from '@ionic-native/file-opener/ngx';
 import { Geolocation } from '@capacitor/geolocation';
-import { HTTP } from '@ionic-native/http/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { Browser } from '@capacitor/browser';
 import * as $ from "jquery";
-import { CallNumber } from 'capacitor-call-number';
+// import { CallNumber } from 'capacitor-call-number';
  
 
 @Component({
@@ -79,7 +77,7 @@ export class LeadDetailsPage implements OnInit {
     const telUrl = `tel:${phoneNumber}`;
 
     if (this.platform.is('ios')) {
-      await CallNumber.call({ number: phoneNumber, bypassAppChooser: false })
+      // await CallNumber.call({ number: phoneNumber, bypassAppChooser: false })
     }else{
       window.open(telUrl, '_system');
     }

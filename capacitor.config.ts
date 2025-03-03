@@ -5,13 +5,17 @@ const config: CapacitorConfig = {
   appName: 'LC Partner',
   webDir: 'www',
   bundledWebRuntime: false,
-
+  android: {
+    webContentsDebuggingEnabled: true,
+    allowMixedContent: true, // Allow HTTP content in HTTPS app
+  },
   "server": {
     "hostname": "localhost",    
    "iosScheme": "ionic",
    "androidScheme": "https",  
    "allowNavigation": [
-     "legendcompany.in"  
+     "legendcompany.in",
+     "dashboard.legendcompany.in"
    ]
  }
 
