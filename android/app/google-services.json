@@ -3,7 +3,7 @@
     "project_number": "425991929480",
     "firebase_url": "https://repairservicesindia-f37b6.firebaseio.com",
     "project_id": "repairservicesindia-f37b6",
-    "storage_bucket": "repairservicesindia-f37b6.appspot.com"
+    "storage_bucket": "repairservicesindia-f37b6.firebasestorage.app"
   },
   "client": [
     {
@@ -13,12 +13,7 @@
           "package_name": "com.repairservicesindia.partner"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "425991929480-knfld9o4rhh74511b82rlcm6v6bob5p6.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
           "current_key": "AIzaSyAVIXTF9_FRjiJsrDsdCmb2Oi1MQDKLKn0"
@@ -26,12 +21,7 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "425991929480-knfld9o4rhh74511b82rlcm6v6bob5p6.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }
