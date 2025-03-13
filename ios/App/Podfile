@@ -16,8 +16,6 @@ def capacitor_pods
   pod 'CapacitorFilesystem', :path => '../../node_modules/@capacitor/filesystem'
   pod 'CapacitorGeolocation', :path => '../../node_modules/@capacitor/geolocation'
   pod 'CapacitorPushNotifications', :path => '../../node_modules/@capacitor/push-notifications'
-  pod 'DroponioCapacitorCallNumber', :path => '../../node_modules/@droponio/capacitor-call-number'
-  pod 'CapacitorCallNumber', :path => '../../node_modules/capacitor-call-number'
   pod 'CordovaPlugins', :path => '../capacitor-cordova-ios-plugins'
   pod 'CordovaPluginsResources', :path => '../capacitor-cordova-ios-plugins'
 end

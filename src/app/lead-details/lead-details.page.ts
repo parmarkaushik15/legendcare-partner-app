@@ -78,6 +78,7 @@ export class LeadDetailsPage implements OnInit {
 
     if (this.platform.is('ios')) {
       // await CallNumber.call({ number: phoneNumber, bypassAppChooser: false })
+      window.open(telUrl, '_system');
     }else{
       window.open(telUrl, '_system');
     }
