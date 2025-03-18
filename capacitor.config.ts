@@ -5,9 +5,18 @@ const config: CapacitorConfig = {
   appName: 'LC Partner',
   webDir: 'www',
   bundledWebRuntime: false,
+  "backgroundColor": "#ffffff",
   android: {
     webContentsDebuggingEnabled: true,
     allowMixedContent: true, // Allow HTTP content in HTTPS app
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    },
+    "CapacitorWebView": {
+      "iosScheme": "https"
+    }
   },
   "server": {
     "hostname": "localhost",    
